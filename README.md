@@ -1,2 +1,3 @@
-# nix-vim-config-
+# nix-vim-config
+
 Vim Configuration

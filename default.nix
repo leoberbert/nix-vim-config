@@ -1,21 +1,19 @@
-let
-  pkgs = import <nixpkgs> {};
-in
+{ pkgs ? import <nixpkgs> {} }:
 
-pkgs.stdenv.mkDerivation rec {
+pkgs.stdenv.mkDerivation {
   pname = "nix-vim-config";
   version = "1.0";
-
   src = ./.;
 
-  nativeBuildInputs = [ pkgs.vim ];
+  nativeBuildInputs = with pkgs; [ vim git ];
 
   installPhase = ''
     mkdir -p $out/etc
     cp ${src}/vimrc $out/etc/vimrc
 
-    mkdir -p $out/share/vim/vimfiles
-    cp -r ${src}/pack $out/share/vim/vimfiles/
+    mkdir -p $out/share/vim/vimfiles/colors
+    curl -L https://raw.githubusercontent.com/tomasiser/vim-code-dark/master/colors/codedark.vim \
+      -o $out/share/vim/vimfiles/colors/codedark.vim
   '';
 
   meta = {
@@ -23,4 +21,3 @@ pkgs.stdenv.mkDerivation rec {
     license = pkgs.lib.licenses.gpl3;
   };
 }
-

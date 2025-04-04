@@ -1,4 +1,4 @@
-# Vim flake com tema codedark
+# nix-vim-config
 
 Este repositório define um pacote Nix que fornece uma versão personalizada do **Vim** com o esquema de cores `codedark` e várias configurações de qualidade de vida para HTML, Python e YAML.
 
